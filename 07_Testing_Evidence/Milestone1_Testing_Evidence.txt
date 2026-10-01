@@ -1,0 +1,127 @@
+CMPG325-2026-129 — Milestone 1 Testing Evidence
+
+Client: Boitshoko Digital Media Agency
+Project: CMPG325 Computer Networks
+Assigned Network: 10.49.0.0/16
+Assigned Challenge: NAT (Advanced)
+
+1. Gateway Connectivity Tests
+
+Management PC1 → Management Gateway
+Source: 10.49.0.98
+Gateway: 10.49.0.97
+Result: Successful
+
+Finance PC1 → Finance Gateway
+Source: 10.49.0.66
+Gateway: 10.49.0.65
+Result: Successful
+
+Creative PC1 → Creative Gateway
+Source: 10.49.0.2
+Gateway: 10.49.0.1
+Result: Successful
+
+File Server → Server Gateway
+Source: 10.49.0.122
+Gateway: 10.49.0.121
+Result: Successful
+
+
+2. Inter-VLAN Connectivity Tests
+
+Management PC1 → Finance PC1
+10.49.0.98 → 10.49.0.66
+Result: Successful
+
+Management PC1 → Creative PC1
+10.49.0.98 → 10.49.0.2
+Result: Successful
+
+Management PC1 → Client Services PC1
+10.49.0.98 → 10.49.0.34
+Result: Successful
+
+Client Services PC1 → IT PC1
+10.49.0.34 → 10.49.0.82
+Result: Successful
+
+IT PC1 → Reception PC1
+10.49.0.82 → 10.49.0.114
+Result: Successful
+
+Reception PC1 → Management PC1
+10.49.0.114 → 10.49.0.98
+Result: Successful
+
+
+3. Server Connectivity Tests
+
+Management PC1 → File Server
+10.49.0.98 → 10.49.0.122
+Result: Successful
+
+Finance PC1 → File Server
+10.49.0.66 → 10.49.0.122
+Result: Successful
+
+Creative PC1 → File Server
+10.49.0.2 → 10.49.0.122
+Result: Successful
+
+
+4. Internet Connectivity and NAT
+
+Primary ISP:
+Router G0/0 → 203.0.113.1
+Result: Primary route active.
+
+NAT was configured using the private 10.49.0.0/16 network and the primary WAN interface.
+
+Primary NAT translation was verified using:
+Inside local: 10.49.0.98
+Inside global: 203.0.113.2
+Destination: 8.8.8.8
+
+Result: NAT translation observed and Internet connectivity successful.
+
+
+5. Finance Backup Internet Test
+
+The primary WAN interface G0/0 was temporarily shut down.
+
+The router then selected the floating static default route through:
+Backup ISP: 198.51.100.1
+Router G0/1: 198.51.100.2
+
+Management PC1 successfully reached 1.1.1.1 through the backup path.
+
+Result: Backup Internet path successfully tested.
+
+The primary WAN interface was restored after testing.
+
+
+6. VLAN and Trunk Verification
+
+Required departmental VLANs were configured:
+VLAN 10 — Management
+VLAN 20 — Finance
+VLAN 30 — Creative
+VLAN 40 — Client Services
+VLAN 50 — IT
+VLAN 60 — Reception
+VLAN 100 — Servers
+VLAN 999 — Native Management
+
+Required switch trunks were configured and verified.
+
+Result: VLAN segmentation and trunk connectivity confirmed.
+
+
+7. Conclusion
+
+The Milestone 1 Packet Tracer implementation was tested for gateway connectivity,
+inter-VLAN communication, server access, NAT operation, VLAN segmentation,
+and Finance backup Internet connectivity.
+
+The tests performed during the implementation were successful.
